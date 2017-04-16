@@ -11,13 +11,16 @@
 #include "Shader.h"
 #include <SOIL.h>
 #include <GL\GL.h>
+// GL MATH
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 
 
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
-
-
+GLfloat xoffset = 0.0f;
 GLfloat mixValue = 0.2f;
 
 int main(int argc, char* argv[])
@@ -164,6 +167,21 @@ int main(int argc, char* argv[])
 		// Activate shader
 		ourShader.Use();
 
+		glm::mat4 trans;
+		trans = glm::translate(trans, glm::vec3(0.5f, -0.5f, 0.0f));
+		trans = glm::rotate(trans, (GLfloat)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(glGetUniformLocation(ourShader.Program, "transform"), 1, GL_FALSE, glm::value_ptr(trans));
+
+		// Draw container
+		glBindVertexArray(VAO);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		glBindVertexArray(0);
+		glm::mat4 trans1;
+		trans1 = glm::translate(trans1, glm::vec3(-0.7f , 0.5f+xoffset, 0.0f));
+		GLfloat scaleAmount = sin(glfwGetTime());
+		trans1 = glm::scale(trans1, glm::vec3(scaleAmount, scaleAmount, scaleAmount));
+		glUniformMatrix4fv(glGetUniformLocation(ourShader.Program, "transform"), 1, GL_FALSE, glm::value_ptr(trans1));
+
 		// Draw container
 		glBindVertexArray(VAO);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -189,12 +207,14 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	if (key == GLFW_KEY_UP && action == GLFW_PRESS)
 	{
 		mixValue += 0.1f;
+		xoffset += 0.1f;
 		if (mixValue >= 1.0f)
 			mixValue = 1.0f;
 	}
 	if (key == GLFW_KEY_DOWN && action == GLFW_PRESS)
 	{
 		mixValue -= 0.1f;
+		xoffset -= 0.1f;
 		if (mixValue <= 0.0f)
 			mixValue = 0.0f;
 	}
