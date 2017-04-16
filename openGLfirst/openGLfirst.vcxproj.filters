@@ -43,4 +43,12 @@
     <None Include="Shaders\vertex.vs" />
     <None Include="Shaders\fragmenr.frag" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="images\container.jpg">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="images\awesomeface.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

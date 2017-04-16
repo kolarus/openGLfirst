@@ -71,23 +71,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\road2\Desktop\glfw-3.2.1\include;C:\Users\road2\Desktop\glew-2.0.0\lib\Release\Win32;C:\Users\road2\Desktop\bld\src\Debug;C:\Users\road2\Desktop\glew-2.0.0\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\road2\Desktop\bld\src\Debug;C:\Users\road2\Desktop\glew-2.0.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\road2\Desktop\glut;C:\Users\road2\Desktop\Simple OpenGL Image Library\src;C:\Users\road2\Desktop\Simple OpenGL Image Library\projects\VC9\Debug;C:\Users\road2\Desktop\Simple OpenGL Image Library\lib;C:\Users\road2\Desktop\glfw-3.2.1\include;C:\Users\road2\Desktop\glew-2.0.0\lib\Release\Win32;C:\Users\road2\Desktop\bld\src\Debug;C:\Users\road2\Desktop\glew-2.0.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\road2\Desktop\Simple OpenGL Image Library\lib;C:\Users\road2\Desktop\glut;C:\Users\road2\Desktop\Simple OpenGL Image Library\src;C:\Users\road2\Desktop\Simple OpenGL Image Library\projects\VC9\Debug;C:\Users\road2\Desktop\bld\src\Debug;C:\Users\road2\Desktop\glew-2.0.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\road2\Desktop\glfw-3.2.1\include;C:\Users\road2\Desktop\glew-2.0.0\lib\Release\Win32;C:\Users\road2\Desktop\bld\src\Debug;C:\Users\road2\Desktop\glew-2.0.0\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\road2\Desktop\bld\src\Debug;C:\Users\road2\Desktop\glew-2.0.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\road2\Desktop\glut;C:\Users\road2\Desktop\Simple OpenGL Image Library\src;C:\Users\road2\Desktop\Simple OpenGL Image Library\projects\VC9\Debug;C:\Users\road2\Desktop\Simple OpenGL Image Library\lib;C:\Users\road2\Desktop\glfw-3.2.1\include;C:\Users\road2\Desktop\glew-2.0.0\lib\Release\Win32;C:\Users\road2\Desktop\bld\src\Debug;C:\Users\road2\Desktop\glew-2.0.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\road2\Desktop\Simple OpenGL Image Library\lib;C:\Users\road2\Desktop\glut;C:\Users\road2\Desktop\Simple OpenGL Image Library\src;C:\Users\road2\Desktop\Simple OpenGL Image Library\projects\VC9\Debug;C:\Users\road2\Desktop\bld\src\Debug;C:\Users\road2\Desktop\glew-2.0.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Users\road2\Desktop\glfw-3.2.1\include;C:\Users\road2\Desktop\glew-2.0.0\lib\Release\Win32;C:\Users\road2\Desktop\bld\src\Debug;C:\Users\road2\Desktop\glew-2.0.0\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\road2\Desktop\bld\src\Debug;C:\Users\road2\Desktop\glew-2.0.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\road2\Desktop\glut;C:\Users\road2\Desktop\Simple OpenGL Image Library\src;C:\Users\road2\Desktop\Simple OpenGL Image Library\projects\VC9\Debug;C:\Users\road2\Desktop\Simple OpenGL Image Library\lib;C:\Users\road2\Desktop\glfw-3.2.1\include;C:\Users\road2\Desktop\glew-2.0.0\lib\Release\Win32;C:\Users\road2\Desktop\bld\src\Debug;C:\Users\road2\Desktop\glew-2.0.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\road2\Desktop\Simple OpenGL Image Library\lib;C:\Users\road2\Desktop\glut;C:\Users\road2\Desktop\Simple OpenGL Image Library\src;C:\Users\road2\Desktop\Simple OpenGL Image Library\projects\VC9\Debug;C:\Users\road2\Desktop\bld\src\Debug;C:\Users\road2\Desktop\glew-2.0.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Users\road2\Desktop\glfw-3.2.1\include;C:\Users\road2\Desktop\glew-2.0.0\lib\Release\Win32;C:\Users\road2\Desktop\bld\src\Debug;C:\Users\road2\Desktop\glew-2.0.0\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\road2\Desktop\bld\src\Debug;C:\Users\road2\Desktop\glew-2.0.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\road2\Desktop\glut;C:\Users\road2\Desktop\Simple OpenGL Image Library\src;C:\Users\road2\Desktop\Simple OpenGL Image Library\projects\VC9\Debug;C:\Users\road2\Desktop\Simple OpenGL Image Library\lib;C:\Users\road2\Desktop\glfw-3.2.1\include;C:\Users\road2\Desktop\glew-2.0.0\lib\Release\Win32;C:\Users\road2\Desktop\bld\src\Debug;C:\Users\road2\Desktop\glew-2.0.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\road2\Desktop\Simple OpenGL Image Library\lib;C:\Users\road2\Desktop\glut;C:\Users\road2\Desktop\Simple OpenGL Image Library\src;C:\Users\road2\Desktop\Simple OpenGL Image Library\projects\VC9\Debug;C:\Users\road2\Desktop\bld\src\Debug;C:\Users\road2\Desktop\glew-2.0.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -100,7 +100,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glut32.lib;glu32.lib;glfw3.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SOIL.lib;opengl32.lib;glut32.lib;glu32.lib;glfw3.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -114,7 +114,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glut32.lib;glu32.lib;glfw3.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SOIL.lib;opengl32.lib;glut32.lib;glu32.lib;glfw3.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -132,7 +132,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glut32.lib;glu32.lib;glfw3.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SOIL.lib;opengl32.lib;glut32.lib;glu32.lib;glfw3.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -150,7 +150,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glut32.lib;glu32.lib;glfw3.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SOIL.lib;opengl32.lib;glut32.lib;glu32.lib;glfw3.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -169,6 +169,10 @@
       <DeploymentContent>false</DeploymentContent>
     </None>
     <None Include="Shaders\vertex.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="images\awesomeface.png" />
+    <Image Include="images\container.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
