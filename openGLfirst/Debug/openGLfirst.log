@@ -1,2 +1,5 @@
-﻿  openGLfirst.vcxproj -> C:\Users\road2\Documents\Visual Studio 2015\Projects\openGLfirst\Debug\openGLfirst.exe
+﻿  Source.cpp
+c:\users\road2\documents\visual studio 2015\projects\openglfirst\openglfirst\source.cpp(225): warning C4244: инициализация: преобразование "double" в "GLfloat", возможна потеря данных
+c:\users\road2\documents\visual studio 2015\projects\openglfirst\openglfirst\source.cpp(226): warning C4244: инициализация: преобразование "double" в "GLfloat", возможна потеря данных
+  openGLfirst.vcxproj -> C:\Users\road2\Documents\Visual Studio 2015\Projects\openGLfirst\Debug\openGLfirst.exe
   openGLfirst.vcxproj -> C:\Users\road2\Documents\Visual Studio 2015\Projects\openGLfirst\Debug\openGLfirst.pdb (Full PDB)
