@@ -18,8 +18,23 @@
 
 
 
-
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
+void mouse_callback(GLFWwindow* window, double xpos, double ypos);
+void doMovement();
+
+GLfloat fov(45.0f);
+GLfloat lastX = 400, lastY = 300;
+GLfloat pitch,yaw;
+
+GLfloat deltaTime = 0.0f;
+GLfloat lastTime = 0.0f;
+glm::vec3 cameraPos		= glm::vec3(0.0f, 0.0f, 3.0f);
+glm::vec3 cameraFront	= glm::vec3(0.0f, 0.0f, -1.0f);
+glm::vec3 cameraUp		= glm::vec3(0.0f, 1.0f, 0.0f);
+
+bool keys[1024];
+
 GLfloat xoffset = 0.0f;
 GLfloat mixValue = 0.2f;
 
@@ -28,6 +43,8 @@ int main(int argc, char* argv[])
 	// GLFW INIT (major,minor,profile,resizable)
 	glfw fw(3, 3, GLFW_OPENGL_CORE_PROFILE, GL_TRUE);
 	errHandler hndl;
+
+
 	//Создание окна GLFW(width,height,title,nullptr,nullptr)
 	GLFWwindow* window = glfwCreateWindow(800, 600, "LearnOpenGL", nullptr, nullptr);
 	//handling glfw window error
@@ -37,7 +54,9 @@ int main(int argc, char* argv[])
 
 	// transfering result of key_callback to glfw context
 	glfwSetKeyCallback(window, key_callback);
-
+	glfwSetCursorPosCallback(window, mouse_callback);
+	glfwSetScrollCallback(window, scroll_callback);
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	int width, height;
 	// getting window size from GLFW
 	glfwGetFramebufferSize(window, &width, &height);
@@ -64,13 +83,6 @@ int main(int argc, char* argv[])
 	GL_STATIC_DRAW: данные либо никогда не будут изменяться, либо будут изменяться очень редко;
 	GL_DYNAMIC_DRAW: данные будут меняться довольно часто;
 	GL_STREAM_DRAW: данные будут меняться при каждой отрисовке.
-	-------------------------------------------------------------
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices),vertices, GL_STATIC_DRAW);*/
-	/*-------------------------------------------------------------
-	Shader should be written in a special language and included as a C string
-	Setting version
-	in vec3 position - атрибуты поданые на вход шейдеру
-	gl_Position - request vec4 type and sets the positionn
 	-------------------------------------------------------------*/
 
 	Shader ourShader("Shaders/vertex.vs", "Shaders/fragmenr.frag");
@@ -195,12 +207,16 @@ int main(int argc, char* argv[])
 		// Check if any events have been activiated (key pressed, mouse moved etc.) and call corresponding response functions
 		glfwPollEvents();
 
+		GLfloat currrentTime = glfwGetTime();
+		deltaTime = currrentTime - lastTime;
+		lastTime = currrentTime;
+
 		// Render
 		// Clear the colorbuffer
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
+		doMovement();
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, texture1);
 		glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture1"), 0);
@@ -214,26 +230,11 @@ int main(int argc, char* argv[])
 
 
 
-		//Camera setup
-		glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
-		glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
-		glm::vec3 cameraDirection = glm::normalize(cameraPos - cameraTarget);
-		glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
-		glm::vec3 cameraRight = glm::normalize(glm::cross(up, cameraDirection));
-		glm::vec3 cameraUp = glm::cross(cameraDirection, cameraRight);
-
-		GLfloat radius = 10.0f;
-		GLfloat camX = sin(glfwGetTime()) * radius;
-		GLfloat camZ = cos(glfwGetTime()) * radius;
 		glm::mat4 view;
-		view = glm::lookAt(glm::vec3(camX, 0.0, camZ), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
-
-		/*glm::mat4 view;
-		// мы смещаем сцену в направлении обратном тому, в котором мы хотим переместиться
-		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));*/
+		view = glm::lookAt(cameraPos,cameraPos+ cameraFront,cameraUp);
 
 		glm::mat4 projection;
-		projection = glm::perspective(glm::radians(45.0f), (GLfloat)width / (GLfloat)height, 0.1f, 100.0f);
+		projection = glm::perspective(glm::radians(fov), (GLfloat)width / (GLfloat)height, 0.1f, 100.0f);
 
 		GLint modelLoc = glGetUniformLocation(ourShader.Program, "view");
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(view));
@@ -271,22 +272,61 @@ int main(int argc, char* argv[])
 }
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
-	// Когда пользователь нажимает ESC, мы устанавливаем свойство WindowShouldClose в true, 
-	// и приложение после этого закроется
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GL_TRUE);
-	if (key == GLFW_KEY_UP && action == GLFW_PRESS)
+	if (key >= 0 && key < 1024)
 	{
-		mixValue += 0.1f;
-		xoffset += 0.5f;
-		if (mixValue >= 1.0f)
-			mixValue = 1.0f;
+		if (action == GLFW_PRESS)
+			keys[key] = true;
+		else if (action == GLFW_RELEASE)
+			keys[key] = false;
 	}
-	if (key == GLFW_KEY_DOWN && action == GLFW_PRESS)
-	{
-		mixValue -= 0.1f;
-		xoffset -= 0.5f;
-		if (mixValue <= 0.0f)
-			mixValue = 0.0f;
-	}
+}
+
+void doMovement(){
+	GLfloat cameraSpeed = 5.0f * deltaTime;
+	if (keys[GLFW_KEY_W])
+		cameraPos += cameraSpeed*cameraFront;
+	if (keys[GLFW_KEY_S])
+		cameraPos -= cameraSpeed*cameraFront;
+	if (keys[GLFW_KEY_A])
+		cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp))*cameraSpeed;
+	if (keys[GLFW_KEY_D])
+		cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp))*cameraSpeed;
+	cameraPos.y = 0.0f;
+}
+void mouse_callback(GLFWwindow* window, double xpos, double ypos){
+	GLfloat xoffset = xpos - lastX;
+	GLfloat yoffset = lastY - ypos; // Reversed since y-coordinates range from bottom to top
+	lastX = xpos;
+	lastY = ypos;
+	std::cout << "Current : "<< xpos << " ; " << ypos << std::endl;
+	GLfloat sensitivity = 0.05f;
+	xoffset *= sensitivity;
+	yoffset *= sensitivity;
+	std::cout << "Offset : " << xoffset << " ; " << yoffset << std::endl;
+	yaw += xoffset;
+	pitch += yoffset;
+
+	if (pitch > 89.0f)
+		pitch = 89.0f;
+	if (pitch < -89.0f)
+		pitch = -89.0f;
+
+	glm::vec3 front;
+	front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+	front.y = sin(glm::radians(pitch));
+	front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+	std::cout << front.x << " ; " << front.y << " ; " << front.z << std::endl;
+	cameraFront = glm::normalize(front);
+}
+
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+	if (fov >= 1.0f && fov <= 45.0f)
+		fov -= yoffset;
+	if (fov <= 1.0f)
+		fov = 1.0f;
+	if (fov >= 45.0f)
+		fov = 45.0f;
 }
